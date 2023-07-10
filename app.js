@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv'
 import appUsuario from './routers/bodegas.js';
-// import appMascotas from './routers/mascotas.js';
+import appProductos from './routers/productos.js';
 // import appCarros from './routers/carros.js';
 // import appRelacionados from './routers/relacionados.js';
 
@@ -13,7 +13,7 @@ const appExpress = express()
 appExpress.use(express.json())
 
 appExpress.use('/bodegas',appUsuario)
-// appExpress.use('/mascota',appMascotas)
+appExpress.use('/productos',appProductos)
 // appExpress.use('/carros',appCarros)
 // appExpress.use('/relacionados',appRelacionados)
 
