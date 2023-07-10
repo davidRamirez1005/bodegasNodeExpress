@@ -1,0 +1,4 @@
+PORT = 3010
+IP = 127.0.0.1
+
+MY_CONFIG={"host":"localhost","user":"campus","password":"campus2023","database":"pruebaGBP","port":3306}
