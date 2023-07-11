@@ -1,6 +1,6 @@
 
-// import validateSchema from '../validators/middleware/middlewareDatos.js'
-// import schema from '../validators/validadorUsuarios.js'
+import validateSchema from '../validators/middleware/middlewarePost.js'
+import schema from '../validators/validadorBodegas.js'
 import express from 'express';
 import con from '../server/db.js';
 
@@ -40,7 +40,7 @@ appBodegas.get('/:id?', (req, res) => {
     "updated_at": timeStamp,
     "deleted_at": timeStamp
 */
-appBodegas.post('/',(req, res) => {
+appBodegas.post('/',validateSchema(schema),(req, res) => {
     const body = req.body
         con.query(
         /*sql*/`INSERT INTO bodegas SET ?`,
