@@ -11,5 +11,8 @@ password: config.password,
 database: config.database,
 port: config.port,
 });
-
+export const servidor = ({
+    port:process.env.PORT || 3000,
+    addresses : process.env.IP
+})
 export default con

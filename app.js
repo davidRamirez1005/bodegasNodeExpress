@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv'
+import { servidor } from './server/db.js';
 import appUsuario from './routers/bodegas.js';
 import appProductos from './routers/productos.js';
 // import appCarros from './routers/carros.js';
@@ -18,10 +19,8 @@ appExpress.use('/productos',appProductos)
 // appExpress.use('/relacionados',appRelacionados)
 
 
-const port = process.env.PORT || 3000
-const addresses = process.env.IP
-appExpress.listen(port, () => {
-  console.log(`Servidor escuchando en http://${addresses}:${port}/`);
+appExpress.listen(servidor.port, () => {
+  console.log(`Servidor escuchando en http://${servidor.addresses}:${servidor.port}/`);
 });
 
 export default appExpress;
