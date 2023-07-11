@@ -13,7 +13,7 @@ const appExpress = express();
 appExpress.use(express.json());
 
 appExpress.use('/bodegas', appUsuario);
-appExpress.use('/productos', appProductos);
+appExpress.use('/totales', appProductos);
 // appExpress.use('/carros',appCarros)
 // appExpress.use('/relacionados',appRelacionados)
 

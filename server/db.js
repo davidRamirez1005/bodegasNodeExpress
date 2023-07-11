@@ -14,6 +14,15 @@ const con = mysql.createPool({
   database: config.database,
   port: config.port,
 });
+// Intentar obtener una conexión del pool para validarla
+con.getConnection((err, connection) => {
+  if (err) {
+    // eslint-disable-next-line
+    console.error('Error al conectar a la base de datos:');
+  } else {
+    connection.release();
+  }
+});
 export const servidor = ({
   port: process.env.PORT || 3000,
   addresses: process.env.IP,
