@@ -41,7 +41,7 @@ appProductos.post('/', (req, res) => {
       // Insertar una cantidad inicial en la tabla de inventarios
       const inventario = {
         id_producto: productoId,
-        cantidad: 2
+        cantidad: 1
       };
 
       con.query('INSERT INTO inventarios SET ?', inventario, (err) => {

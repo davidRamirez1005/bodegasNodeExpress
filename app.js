@@ -4,8 +4,7 @@ import dotenv from 'dotenv';
 import { servidor } from './server/db.js';
 import appUsuario from './routers/bodegas.js';
 import appProductos from './routers/productos.js';
-// import appCarros from './routers/carros.js';
-// import appRelacionados from './routers/relacionados.js';
+import appInventarios from './routers/inventarios.js';
 /* eslint-enable */
 dotenv.config();
 const appExpress = express();
@@ -14,7 +13,7 @@ appExpress.use(express.json());
 
 appExpress.use('/bodegas', appUsuario);
 appExpress.use('/totales', appProductos);
-// appExpress.use('/carros',appCarros)
+appExpress.use('/inventarios', appInventarios);
 // appExpress.use('/relacionados',appRelacionados)
 
 appExpress.listen(servidor.port, () => {
