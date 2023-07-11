@@ -1,5 +1,7 @@
+/* eslint-disable */
 import Joi from 'joi';
-/*  
+/* eslint-enable */
+/*
     "nombre": "string",
     "id_responsable": bigint,
     "estado": tyninit,
@@ -10,15 +12,14 @@ import Joi from 'joi';
     "deleted_at": timeStamp
 */
 const schema = Joi.object({
-    nombre : Joi.string().min(0).max(255),
-    id_responsable : Joi.number().integer().positive(),
-    estado : Joi.number().positive().max(255),
-    created_by : Joi.number().integer().positive().allow(null),
-    update_by : Joi.number().integer().positive().allow(null),
-    created_at : Joi.date().allow(null),
-    updated_at : Joi.date().allow(null),
-    deleted_at : Joi.date().allow(null),
+  nombre: Joi.string().min(0).max(255),
+  id_responsable: Joi.number().integer().positive(),
+  estado: Joi.number().positive().max(255),
+  created_by: Joi.number().integer().positive().allow(null),
+  update_by: Joi.number().integer().positive().allow(null),
+  created_at: Joi.date().allow(null),
+  updated_at: Joi.date().allow(null),
+  deleted_at: Joi.date().allow(null),
 });
-
 
 export default schema;

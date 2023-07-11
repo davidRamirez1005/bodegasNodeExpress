@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 // import validateSchema from '../validators/middleware/middlewareDatos.js'
 // import schema from '../validators/validadorUsuarios.js'
 import express from 'express';
@@ -10,27 +10,26 @@ const appProductos = express.Router();
  *  ! Metodo GET listar los datos de bodegas
  */
 appProductos.get('/:id?', (req, res) => {
-    (req.params.id) ?
-        con.query(
-            /*sql*/`SELECT * FROM productos WHERE id=${req.params.id}`,
-            (err, data, fils) => {
-            res.send(data);
-        }
-        )
-    :
-    con.query(
-        /*sql*/`SELECT * FROM productos ORDER BY nombre`,
-        (err, data, fils) => {
-            res.send(data);
-        }
-        );
+  (req.params.id)
+    ? con.query(
+      /* sql */`SELECT * FROM productos WHERE id=${req.params.id}`,
+      (err, data, fils) => {
+        res.send(data);
+      },
+    )
+    : con.query(
+      /* sql */'SELECT * FROM productos ORDER BY nombre',
+      (err, data, fils) => {
+        res.send(data);
+      },
+    );
 });
 /**
  * ! metodo POST
- * 
+ *
  * ? manera de insertar los datos
  */
-/*  
+/*
     "nombre": "string",
     "id_responsable": bigint,
     "estado": tyninit,
