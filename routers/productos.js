@@ -1,6 +1,5 @@
 /* eslint-disable */
-// import validateSchema from '../validators/middleware/middlewareDatos.js'
-// import schema from '../validators/validadorUsuarios.js'
+import { plainToClass } from 'class-transformer';
 import express from 'express';
 import con from '../server/db.js';
 

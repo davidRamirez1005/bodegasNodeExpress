@@ -1,8 +1,7 @@
 /* eslint-disable */
 import express from 'express';
-import validateSchema from '../validators/middleware/middlewarePost.js';
-import schema from '../validators/validadorBodegas.js';
 import con from '../server/db.js';
+import { plainToClass } from 'class-transformer';
 
 const appBodegas = express.Router();
 
@@ -39,7 +38,7 @@ appBodegas.get('/:id?', (req, res) => {
     "updated_at": timeStamp,
     "deleted_at": timeStamp
 */
-appBodegas.post('/', validateSchema(schema), (req, res) => {
+appBodegas.post('/', (req, res) => {
   const { body } = req;
   con.query(
     /* sql */'INSERT INTO bodegas SET ?',

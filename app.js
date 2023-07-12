@@ -1,4 +1,5 @@
 /* eslint-disable */
+import 'reflect-metadata';
 import express from 'express';
 import dotenv from 'dotenv';
 import { servidor } from './server/db.js';
