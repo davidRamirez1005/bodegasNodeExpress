@@ -11,9 +11,9 @@ const appExpress = express();
 
 appExpress.use(express.json());
 
-appExpress.use('/bodegas', appUsuario);
-appExpress.use('/totales', appProductos);
-appExpress.use('/inventarios', appInventarios);
+appExpress.use('/bodega', appUsuario);
+appExpress.use('/total', appProductos);
+appExpress.use('/inventario', appInventarios);
 // appExpress.use('/relacionados',appRelacionados)
 
 appExpress.listen(servidor.port, () => {
