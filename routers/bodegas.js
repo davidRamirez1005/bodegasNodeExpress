@@ -45,7 +45,7 @@ appBodegas.post('/',middlewareBodega,(req, res) => {
         con.query(
         /*sql*/`INSERT INTO bodegas SET ?`,
         body,
-        (err,data,fils) => {
+        (err,data,fils) => { 
           console.log(err);
             data.affectedRows += 200;
             let resul = body;

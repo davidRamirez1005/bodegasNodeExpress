@@ -3,25 +3,25 @@ import express from 'express';
 import con from '../server/db.js';
 import { plainToClass } from 'class-transformer';
 const appInventarios = express.Router();
-
+appInventarios.use(express.json());
 /**
  * ! metodo POST
  */
 appInventarios.post("/", (req, res) => {
-    const { id_producto, id_bodega, cantidad } = req.body;
+    const { id_producto, id_bodega, cantidad, created_at } = req.body;
   
     // Verificar si la combinación de id_producto y id_bodega ya existe en la tabla de inventarios
     con.query(
       /*sql*/ `SELECT * FROM inventarios WHERE id_producto = ? AND id_bodega = ?`,
-      [id_producto, id_bodega],
+      [id_producto, id_bodega, created_at],
       (err, data, fils) => {
         if (err) {
           res.status(500).send("Internal server error");
         } else if (data.length === 0) {
           // Si la combinación no existe, realizar un INSERT en la tabla de inventarios
           con.query(
-            /*sql*/ `INSERT INTO inventarios (id_producto, id_bodega, cantidad) VALUES (?, ?, ?)`,
-            [id_producto, id_bodega, cantidad],
+            /*sql*/ `INSERT INTO inventarios (id_producto, id_bodega, cantidad,created_at) VALUES (?, ?, ?, ?)`,
+            [id_producto, id_bodega, cantidad,created_at],
             (err, data, fils) => {
               if (err) {
                 res.status(500).send("Internal server error");
@@ -31,6 +31,9 @@ appInventarios.post("/", (req, res) => {
                   id_producto,
                   id_bodega,
                   cantidad,
+                  created_at,
+                  updated_at,
+                  deleted_at
                 });
               }
             }
@@ -42,7 +45,7 @@ appInventarios.post("/", (req, res) => {
   
           con.query(
             /*sql*/ `UPDATE inventarios SET cantidad = ? WHERE id_producto = ? AND id_bodega = ?`,
-            [newCantidad, id_producto, id_bodega],
+            [newCantidad, id_producto, id_bodega,created_at],
             (err, data, fils) => {
               if (err) {
                 res.status(500).send("Internal server error");
@@ -51,6 +54,9 @@ appInventarios.post("/", (req, res) => {
                   id_producto,
                   id_bodega,
                   cantidad: newCantidad,
+                  created_at,
+                  updated_at,
+                  deleted_at
                 });
               }
             }

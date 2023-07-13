@@ -20,7 +20,7 @@ import { Transform, Expose } from 'class-transformer';
     "deleted_at": timeStamp
 */
 let nombreReguex = /^[a-z A-Z]+$/;
-let numeroReguex = /^([0-9]+|null)$/i;
+let numeroReguex = /^([0-9]+|Null)$/i;
 let fechaReguex = /^([0-9]{4}-[0-9]{2}-[0-9]{2}|null)$/i;
 export class DatoBodegas {
     constructor(p1, p2, p3, p4, p5, p6, p7, p8) {
@@ -71,10 +71,14 @@ __decorate([
     Expose({ name: "created_by" }),
     Transform(({ value }) => {
         let data = numeroReguex.test(value);
-        if (data)
+        if (value == null)
+            return null;
+        if (data && typeof value === 'number') {
             return Number(value);
-        else
-            throw { status: 401, message: "El valor de estado no cumple con el formato esperado. (>_<)" };
+        }
+        else {
+            throw { status: 401, message: "El valor de update_by no cumple con el formato esperado. (>_<)" };
+        }
     }),
     __metadata("design:type", Number)
 ], DatoBodegas.prototype, "created_by", void 0);
@@ -82,10 +86,14 @@ __decorate([
     Expose({ name: "update_by" }),
     Transform(({ value }) => {
         let data = numeroReguex.test(value);
-        if (data)
+        if (value == null)
+            return null;
+        if (data && typeof value === 'number') {
             return Number(value);
-        else
+        }
+        else {
             throw { status: 401, message: "El valor de update_by no cumple con el formato esperado. (>_<)" };
+        }
     }),
     __metadata("design:type", Number)
 ], DatoBodegas.prototype, "update_by", void 0);

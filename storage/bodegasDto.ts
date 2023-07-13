@@ -10,7 +10,7 @@ import { Type, Transform, Expose } from 'class-transformer'
     "deleted_at": timeStamp
 */
 let nombreReguex = /^[a-z A-Z]+$/
-let numeroReguex = /^([0-9]+|null)$/i;
+let numeroReguex = /^([0-9]+|Null)$/i;
 let fechaReguex = /^([0-9]{4}-[0-9]{2}-[0-9]{2}|null)$/i;
 
 
@@ -39,15 +39,27 @@ export class DatoBodegas{
     @Expose({name:"created_by"})
     @Transform(({value})=>{
         let data =  numeroReguex.test(value)
-        if(data) return Number(value)
-        else throw {status: 401, message:"El valor de estado no cumple con el formato esperado. (>_<)"}
+        if(value == null )  return null
+     
+        if(data && typeof value === 'number') {
+            return  Number(value)
+        }
+        else{
+            throw {status: 401, message:"El valor de update_by no cumple con el formato esperado. (>_<)"}
+        }
     })
     created_by:number
     @Expose({name:"update_by"})
     @Transform(({value})=>{
         let data =  numeroReguex.test(value)
-        if(data) return Number(value)
-        else throw {status: 401, message:"El valor de update_by no cumple con el formato esperado. (>_<)"}
+        if(value == null )  return null
+     
+        if(data && typeof value === 'number') {
+            return  Number(value)
+        }
+        else{
+            throw {status: 401, message:"El valor de update_by no cumple con el formato esperado. (>_<)"}
+        }
     })
     update_by:number
     @Expose({name:"created_at"})
