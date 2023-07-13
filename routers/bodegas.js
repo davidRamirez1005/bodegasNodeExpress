@@ -5,7 +5,7 @@ import { plainToClass } from 'class-transformer';
 import  middlewareBodega  from '../middleware/validarBodegas.js';
 
 const appBodegas = express.Router();
-
+appBodegas.use(express.json());
 /**
  *  ! Metodo GET listar los datos de bodegas
  */
@@ -40,19 +40,22 @@ appBodegas.get('/:id?', (req, res) => {
     "deleted_at": timeStamp
 */
 
-appBodegas.post('/', middlewareBodega,(req, res) => {
-  const { body } = req;
-  con.query(
-    /* sql */'INSERT INTO bodegas SET ?',
-    body,
-    (err, data, fils) => {
-      const resul = body;
-      resul.id = data.insertId;
-      res.status(201).json({
-        message: 'se ha creado con exito',
-        data: resul,
-      });
-    },
-  );
-});
+appBodegas.post('/',middlewareBodega,(req, res) => {
+    const body = req.body
+        con.query(
+        /*sql*/`INSERT INTO bodegas SET ?`,
+        body,
+        (err,data,fils) => {
+          console.log(err);
+            data.affectedRows += 200;
+            let resul = body;
+            resul.id = data.insertId;
+            res.status(201).json({
+                message : "se ha creado con exito",
+                data : resul
+            })
+        }
+    )
+})
 export default appBodegas;
+

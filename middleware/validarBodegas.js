@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import {DatoBodegas} from '../controller/bodegasDto.js'
 import "reflect-metadata";
-import express from "express";
+import express from 'express';
 import { plainToClass } from "class-transformer";
 
 const middlewareBodega = express();

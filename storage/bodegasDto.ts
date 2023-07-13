@@ -10,8 +10,9 @@ import { Type, Transform, Expose } from 'class-transformer'
     "deleted_at": timeStamp
 */
 let nombreReguex = /^[a-z A-Z]+$/
-let numeroReguex = /^[0-9]+$/g
-let fechaReguex = /^[0-9]{4}(-[0-9]{2}){2}$/
+let numeroReguex = /^([0-9]+|null)$/i;
+let fechaReguex = /^([0-9]{4}-[0-9]{2}-[0-9]{2}|null)$/i;
+
 
 export class DatoBodegas{
     @Expose({name:"nombre"})
@@ -20,64 +21,64 @@ export class DatoBodegas{
         if(data) return (value)
         else throw {status: 401, message:"El valor de nombre no cumple con el formato esperado. (>_<)"}
     })
-    NOM:string
+    nombre:string
     @Expose({name:"id_responsable"})
     @Transform(({value})=>{
         let data =  numeroReguex.test(value)
         if(data) return Number(value)
-        else throw {status: 401,Error, message:"El valor de id_responsable no cumple con el formato esperado. (>_<)"}
+        else throw {status: 401, message:"El valor de id_responsable no cumple con el formato esperado. (>_<)"}
     })
-    IDRES :number
+    id_responsable :number
     @Expose({name:"estado"})
     @Transform(({value})=>{
-        let data =  numeroReguex.test(value)
+        let data =  Number(numeroReguex.test(value))
         if(data) return Number(value)
         else throw {status: 401, message:"El valor de estado no cumple con el formato esperado. (>_<)"}
     })
-    EST:number
+    estado:number
     @Expose({name:"created_by"})
     @Transform(({value})=>{
         let data =  numeroReguex.test(value)
         if(data) return Number(value)
         else throw {status: 401, message:"El valor de estado no cumple con el formato esperado. (>_<)"}
     })
-    CREBY:number
+    created_by:number
     @Expose({name:"update_by"})
     @Transform(({value})=>{
         let data =  numeroReguex.test(value)
         if(data) return Number(value)
         else throw {status: 401, message:"El valor de update_by no cumple con el formato esperado. (>_<)"}
     })
-    UPDBY:number
+    update_by:number
     @Expose({name:"created_at"})
     @Transform(({value})=>{
         let data =  fechaReguex.test(value)
         if(data) return (value)
-        else throw {status: 401, message:"El valor de update_by no cumple con el formato esperado. (>_<)"}
+        else throw {status: 401, message:"El valor de created_at no cumple con el formato esperado. (>_<)"}
     })
-    CREAT:string
+    created_at:string
     @Expose({name:"updated_at"})
     @Transform(({value})=>{
         let data =  fechaReguex.test(value)
         if(data) return (value)
         else throw {status: 401, message:"El valor de updated_at no cumple con el formato esperado. (>_<)"}
     })
-    UPDAT:string
+    updated_at:string
     @Expose({name:"deleted_at"})
     @Transform(({value})=>{
         let data =  fechaReguex.test(value)
         if(data) return (value)
         else throw {status: 401, message:"El valor de deleted_at no cumple con el formato esperado. (>_<)"}
     })
-    DELAT:string
+    deleted_at:string
     constructor(p1:string, p2:number, p3:number,p4:number, p5:number, p6:string, p7:string, p8:string){
-        this.NOM=p1;
-        this.IDRES=p2;
-        this.EST=p3;
-        this.CREBY=p4;
-        this.UPDBY=p5;
-        this.CREAT=p6;
-        this.UPDAT=p7;
-        this.DELAT=p8;
+        this.nombre=p1;
+        this.id_responsable=p2;
+        this.estado=p3;
+        this.created_by=p4;
+        this.update_by=p5;
+        this.created_at=p6;
+        this.updated_at=p7;
+        this.deleted_at=p8;
     }
 }

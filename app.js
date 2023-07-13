@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import express from 'express';
 import dotenv from 'dotenv';
 import { servidor } from './server/db.js';
-import appUsuario from './routers/bodegas.js';
+import appBodegas from './routers/bodegas.js';
 import appProductos from './routers/productos.js';
 import appInventarios from './routers/inventarios.js';
 /* eslint-enable */
@@ -12,7 +12,7 @@ const appExpress = express();
 
 appExpress.use(express.json());
 
-appExpress.use('/bodega', appUsuario);
+appExpress.use('/bodega', appBodegas);
 appExpress.use('/total', appProductos);
 appExpress.use('/inventario', appInventarios);
 // appExpress.use('/relacionados',appRelacionados)
