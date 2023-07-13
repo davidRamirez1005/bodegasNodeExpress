@@ -2,7 +2,7 @@
 import express from 'express';
 import con from '../server/db.js';
 import { plainToClass } from 'class-transformer';
-import { middlewareBodega } from '../middleware/validarBodegas.js';
+import  middlewareBodega  from '../middleware/validarBodegas.js';
 
 const appBodegas = express.Router();
 
@@ -39,13 +39,13 @@ appBodegas.get('/:id?', (req, res) => {
     "updated_at": timeStamp,
     "deleted_at": timeStamp
 */
-appBodegas.post('/', appBodegas.use(middlewareBodega), (req, res) => {
+
+appBodegas.post('/', middlewareBodega,(req, res) => {
   const { body } = req;
   con.query(
     /* sql */'INSERT INTO bodegas SET ?',
     body,
     (err, data, fils) => {
-      data.affectedRows += 200;
       const resul = body;
       resul.id = data.insertId;
       res.status(201).json({
