@@ -32,6 +32,9 @@ export class DatosInventario{
         if(data && typeof value ==='number'){
             return Number(value)
         }
+        else{
+            throw{status:401, message:'valor invalido en id_bodega :('}
+        }
     })
     id_bodega:number;
     @Expose({name:'cantidad'})
@@ -47,13 +50,42 @@ export class DatosInventario{
         }
     })
     cantidad:number;
+    @Expose({name:'created_by'})
+    @Transform(({value})=>{
+        let data = numeroReguex.test(value)
+        if(value == null) return null
+
+        if (data && typeof value == 'number'){
+            return Number(value)
+        } 
+        else{
+            throw{status:401, message:'valor invalido en created_by :('}
+        }
+    })
+    created_by:number;
+    @Expose({name:'update_by'})
+    @Transform(({value})=>{
+        let data = numeroReguex.test(value)
+        if(value == null) return null
+
+        if (data && typeof value == 'number'){
+            return Number(value)
+        } 
+        else{
+            throw{status:401, message:'valor invalido en update_by :('}
+        }
+    })
+    update_by:number;
     @Expose({name:'created_at'})
     @Transform(({value})=>{
         let data = fechaReguex.test(value)
         if(value == null) return null
 
         if(data && typeof value ==='string'){
-            return new Date(value)
+            return (value)
+        }
+        else{
+            throw{status:401, message:'valor invalido en created_at :('}
         }
     })
     created_at:Date;
@@ -63,7 +95,10 @@ export class DatosInventario{
         if(value == null) return null
 
         if(data && typeof value ==='string'){
-            return new Date(value)
+            return(value)
+        }
+        else{
+            throw{status:401, message:'valor invalido en updated_at :('}
         }
     })
     updated_at:Date;
@@ -73,17 +108,22 @@ export class DatosInventario{
         if(value == null) return null
 
         if(data && typeof value ==='string'){
-            return new Date(value)
+            return (value)
+        }
+        else{
+            throw{status:401, message:'valor invalido en deleted_at :('}
         }
     })
     deleted_at:Date;
 
-    constructor(p1:number, p2:number, p3:number, p4:Date, p5:Date, p6:Date){
+    constructor(p1:number, p2:number, p3:number, p4:number, p5:number, p6:Date, p7:Date, p8:Date){
         this.id_producto = p1
         this.id_bodega = p2
         this.cantidad = p3
-        this.created_at = p4
-        this.updated_at = p5
-        this.deleted_at = p6
+        this.created_by= p4
+        this.update_by = p5
+        this.created_at = p6
+        this.updated_at = p7
+        this.deleted_at = p8
     }
 }
