@@ -40,7 +40,7 @@ export class DatoBodegas{
     @Transform(({value})=>{
         let data =  numeroReguex.test(value)
         if(value == null )  return null
-     
+
         if(data && typeof value === 'number') {
             return  Number(value)
         }
@@ -53,7 +53,7 @@ export class DatoBodegas{
     @Transform(({value})=>{
         let data =  numeroReguex.test(value)
         if(value == null )  return null
-     
+
         if(data && typeof value === 'number') {
             return  Number(value)
         }
