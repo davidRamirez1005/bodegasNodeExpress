@@ -2,9 +2,10 @@
 import { plainToClass } from 'class-transformer';
 import express from 'express';
 import con from '../server/db.js';
+import middlewareProductos from '../middleware/validarProductos.js';
 
 const appProductos = express.Router();
-
+appProductos.use(express.json())
 /**
  *  ! Metodo GET listar los datos de bodegas
  */
@@ -26,7 +27,7 @@ appProductos.get("/", (req, res) => {
  *
  * ? manera de insertar los datos
  */
-appProductos.post('/', (req, res) => {
+appProductos.post('/', middlewareProductos,(req, res) => {
   const producto = req.body;
 
   // Insertar el producto en la tabla de productos
